@@ -1,0 +1,26 @@
+<script src="jquery-2.2.0.min.js"></script>
+<style>
+.downloadme{
+	color:blue;
+	text-decoration:underline;
+	cursor:pointer;
+}
+</style>
+<p class="downloadme"  title="abc.zip">abc.zip</p>
+<p class="downloadme" title="abc.txt">abc.txt</p>
+<p class="e"></p>
+<script>
+$(document).ready(function(){
+$(".downloadme").click(function(){
+var me = $(this).attr("title");
+$.ajax({
+	type:"get",
+	url:"downloadfile.php",
+	data:"f="+me,
+	success:function(i){if(i){window.location.replace('download.php?file='+i);}else{$(".e").html(i)}}
+});
+});
+})
+</script>
+
+
